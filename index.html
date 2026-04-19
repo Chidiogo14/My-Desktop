@@ -44,13 +44,22 @@
     </div>
 </body>
 
-<script>
+    <script>
+    
 var sp = "/";
 var today = new Date();
 
 var dd = today.getDate();
 var mm = today.getMonth() +1;
 var yyyy = today.getFullYear();
+
+try {
+    var loadNotes = localStorage.getItem("notes");
+}
+catch (err) {
+    var loadNotes = "Enter your notes here then click 'save' ";
+}
+$("note-area").val(loadNotes);
 
 if(dd <10) {
     dd ='0'+dd;
@@ -63,6 +72,13 @@ if(mm <10) {
 }
 
 $("#date").html(mm+sp+dd+sp+yyyy);
-</script>
+
+$("#saveNoteBtn").click(function(){
+    var currentNotes= $("#note-area").val();
+    localStorage.setItem("notes", currentNotes);
+});
+
+
+    </script>
 </html>
 
